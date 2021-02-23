@@ -43,11 +43,11 @@ public class KrateUpgradeItem extends ItemBase {
                         KrateTile krate2 = (KrateTile) tile2;
                         Inventory inv2 = krate2.getInventory();
                         for (int i = 0; i < tier.getInvSize(); i++) {
-                            inv2.setStack(i, inv.getStackInSlot(i));
+                            inv2.setStackInSlot(i, inv.getStackInSlot(i));
                         }
                         int j = 0;
                         for (int i = tier.getInvSize(); i < inv.getSlots(); i++) {
-                            inv2.setStack(j + this.tier.getInvSize(), inv.getStackInSlot(i));
+                            inv2.setStackInSlot(j + this.tier.getInvSize(), inv.getStackInSlot(i));
                             j++;
                         }
                         krate2.copy(krate);

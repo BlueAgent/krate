@@ -121,7 +121,7 @@ public class KrateTile extends AbstractTickableTile<Tier, KrateBlock> implements
             if (this.itemTransfer && this.ticks % 10 == 0) {
                 for (Direction side : Direction.values()) {
                     LazyOptional<IItemHandler> cap = Inventory.get(world, this.pos.offset(side), side.getOpposite());
-                    cap.ifPresent(handler -> this.hopper.transfer(side, handler, 3, this::checkFilter, this::checkPushFilter,
+                    cap.ifPresent(handler -> this.hopper.getHopper(side).transfer(handler, 3, this::checkFilter, this::checkPushFilter,
                             IntStream.range(this.inv.getSlots() - this.exSlots, this.inv.getSlots()).toArray()));
                 }
             }
@@ -219,7 +219,7 @@ public class KrateTile extends AbstractTickableTile<Tier, KrateBlock> implements
             if (!itemTransfer) {
                 if (this.world != null) {
                     Stack.drop(this.world, getPos(), this.inv.getStackInSlot(size + 1));
-                    this.inv.setStack(size + 1, ItemStack.EMPTY);
+                    this.inv.setStackInSlot(size + 1, ItemStack.EMPTY);
                 }
             }
             sync = true;
